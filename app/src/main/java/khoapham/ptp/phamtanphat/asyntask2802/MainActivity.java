@@ -1,8 +1,10 @@
 package khoapham.ptp.phamtanphat.asyntask2802;
 
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -35,12 +37,41 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Xulytacvu().execute();
 
             }
         });
     }
-    class Xulytacvu extends AsyncTask<> {
+    //Param : tham so truyen vao cho phan doinbackground
+    //Progress : tham so truyen vao cho phan progressupdate
+    //Result : tham so truyen vao cho phan onPostExecute
+    class Xulytacvu extends AsyncTask<Void,String,String> {
 
+        @Override
+        protected void onPreExecute() {
+            //Hien thi progressbar
+            //Hien thi textview
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... strings) {
+            //Cu sau 1s = truyen thang progressupdate 20
+            //Khi truyen du 100 tra gia tri ve la 1 chuoi download thanh cong
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            //Nhan gia tri tu doinbackground va gan len cho giao dien
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            // Nhan cai chuoi duoc tra ve sau do hient hi len man hinh
+            super.onPostExecute(s);
+        }
     }
 
 }
