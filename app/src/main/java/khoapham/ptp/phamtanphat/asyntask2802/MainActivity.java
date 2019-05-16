@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Xulytacvu().execute();
+                new Xulytacvu().execute("abc","cdf");
 
             }
         });
@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
     //Param : tham so truyen vao cho phan doinbackground
     //Progress : tham so truyen vao cho phan progressupdate
     //Result : tham so truyen vao cho phan onPostExecute
-    class Xulytacvu extends AsyncTask<Void,Integer,String> {
-
+    class Xulytacvu extends AsyncTask<String,Integer,String> {
         @Override
         protected void onPreExecute() {
             //Hien thi progressbar
@@ -56,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
             txtPhantram.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
-
         @Override
-        protected String doInBackground(Void... strings) {
+        protected String doInBackground(String... strings) {
             //Cu sau 1s = truyen thang progressupdate 20
+//            Log.d("BBB",strings.length);
             //Khi truyen du 100 tra gia tri ve la 1 chuoi download thanh cong
             for (int i = 0 ; i < 5 ; i++){
                 publishProgress(20);
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return "Down load thành công";
         }
-
         @Override
         protected void onProgressUpdate(Integer... values) {
             //Nhan gia tri tu doinbackground va gan len cho giao dien
@@ -79,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             txtPhantram.setText(progressBar.getProgress() + "");
             super.onProgressUpdate(values);
         }
-
         @Override
         protected void onPostExecute(String s) {
             txtPhantram.setText(s);
