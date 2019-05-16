@@ -11,6 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -52,23 +55,17 @@ public class MainActivity extends AppCompatActivity {
     //Progress : tham so truyen vao cho phan progressupdate
     //Result : tham so truyen vao cho phan onPostExecute
     class Xulytacvu extends AsyncTask<String,String,ArrayList<String>> {
-
         @Override
         protected ArrayList<String> doInBackground(String... strings) {
             ArrayList<String> content = new ArrayList<>();
             try    {
                 // create a url object
                 URL url = new URL(strings[0]);
-
                 // create a urlconnection object
                 URLConnection urlConnection = url.openConnection();
-
                 // wrap the urlconnection in a bufferedreader
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
                 String line;
-
-
                 // read from the urlconnection via the bufferedreader
                 while ((line = bufferedReader.readLine()) != null){
 
@@ -95,7 +92,14 @@ public class MainActivity extends AppCompatActivity {
             for (String value : strings){
                 ketqua += value;
             }
-            txtPhantram.setText(ketqua);
+            //covert string ve dang the mo dau tien o ben trong
+            try {
+                JSONObject jsonObject = new JSONObject(ketqua);
+                String monhoc = jsonObject.getString("monhoc");
+                Log.d("BBB",monhoc);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             super.onPostExecute(strings);
         }
     }
