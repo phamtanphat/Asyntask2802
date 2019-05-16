@@ -7,12 +7,12 @@
     tools:context=".MainActivity"
     android:gravity="center">
 
+
     <TextView
         android:textStyle="bold"
         android:textColor="#f20"
         android:layout_centerInParent="true"
-        android:textSize="30sp"
-        android:text="17 %"
+        android:textSize="20sp"
         android:id="@+id/textviewDungluong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
