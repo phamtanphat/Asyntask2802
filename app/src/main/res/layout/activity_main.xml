@@ -18,7 +18,6 @@
         android:layout_height="wrap_content" />
     <ProgressBar
         android:layout_marginTop="30dp"
-        android:progress="30"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:id="@+id/progressbar"
         android:layout_below="@id/textviewDungluong"
