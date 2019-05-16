@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Xulytacvu().execute("https://khoapham.vn/KhoaPhamTraining/json/tien/demo1.json");
+                new Xulytacvu().execute("https://khoapham.vn/KhoaPhamTraining/json/tien/demo3.json");
 
             }
         });
@@ -95,8 +95,10 @@ public class MainActivity extends AppCompatActivity {
             //covert string ve dang the mo dau tien o ben trong
             try {
                 JSONObject jsonObject = new JSONObject(ketqua);
-                String monhoc = jsonObject.getString("monhoc");
-                Log.d("BBB",monhoc);
+                JSONObject jsonObject1 =jsonObject.getJSONObject("language");
+                JSONObject jsonObject2 = jsonObject1.getJSONObject("vn");
+                String name = jsonObject2.getString("name");
+                Log.d("BBB",name);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
