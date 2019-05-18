@@ -2,6 +2,7 @@ package khoapham.ptp.phamtanphat.asyntask2802;
 
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.annotation.FontRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -35,18 +38,11 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar);
 
         progressBar.setVisibility(View.GONE);
-//        - Truoc khi bat dau down load :
-//            + Cho hien thanh progressbar
-//        - Trong qua trinh download :
-//            + Hien thi thanh progressbar;
-//            + Hien thi text phan tram down load
-//            + 1s => 20 phan tram;
-//        - Down load xog hien thi tam hinh:
-//            + Tat thanh progressbar va text
+
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Xulytacvu().execute("https://khoapham.vn/KhoaPhamTraining/json/tien/demo3.json");
+                new Xulytacvu().execute("https://khoapham.vn/KhoaPhamTraining/json/tien/demo4.json");
 
             }
         });
@@ -94,18 +90,27 @@ public class MainActivity extends AppCompatActivity {
                 ketqua += value;
             }
             //covert string ve dang the mo dau tien o ben trong
+
             try {
-                JSONObject jsonObject = new JSONObject(ketqua);
-                JSONObject jsonObject1 =jsonObject.getJSONObject("language");
-                JSONObject jsonObject2 = jsonObject1.getJSONObject("vn");
-                String name = jsonObject2.getString("name");
-                Log.d("BBB",name);
+                JSONArray jsonArray = new JSONArray(ketqua);
+                //foreach su dung primities , kieu object
+                for (int i = 0 ; i<jsonArray.length() ; i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String khoahoc = jsonObject.getString("khoahoc");
+                    String hocphi = jsonObject.getString("hocphi");
+                    Log.d("BBB",hocphi );
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             super.onPostExecute(strings);
         }
     }
 
+    private void XulyJson() throws NullPointerException {
 
+
+    }
 }
