@@ -96,15 +96,14 @@ public class MainActivity extends AppCompatActivity {
                 //foreach su dung primities , kieu object
                 for (int i = 0 ; i<jsonArray.length() ; i++){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    if (jsonObject.has("khoahoc") && jsonObject.has("hocphi")){
-                        String khoahoc = jsonObject.getString("khoahoc");
-                        String hocphi = jsonObject.getString("hocphi");
-                        Log.d("BBB",hocphi);
-                    }
-
-
-
-
+//                    if (jsonObject.has("khoahoc") && jsonObject.has("hocphi")){
+//                        String khoahoc = jsonObject.getString("khoahoc");
+//                        String hocphi = jsonObject.getString("hocphi");
+//                        Log.d("BBB",hocphi);
+//                    }
+                    String khoahoc = jsonObject.optString("khoahoc=","Loi");
+                    String hocphi = jsonObject.optString("hocphi");
+                    Log.d("BBB",khoahoc);
                 }
 
             } catch (JSONException e) {
