@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 while ((line = bufferedReader.readLine()) != null){
 
                     content.add(line + "\n");
-                    publishProgress(line + "\n");
+//                    publishProgress(line + "\n");
                 }
                 bufferedReader.close();
             }
@@ -80,11 +80,12 @@ public class MainActivity extends AppCompatActivity {
             return content;
         }
 
-        @Override
-        protected void onProgressUpdate(String... values) {
-            txtPhantram.append(values[0]);
-            super.onProgressUpdate(values);
-        }
+
+//        @Override
+//        protected void onProgressUpdate(String... values) {
+//            txtPhantram.append(values[0]);
+//            super.onProgressUpdate(values);
+//        }
 
         @Override
         protected void onPostExecute(ArrayList<String> strings) {
